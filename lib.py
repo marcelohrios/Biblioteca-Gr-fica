@@ -1,3 +1,4 @@
+import math
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -6,9 +7,9 @@ import numpy as np
 # plt.show()
 
 reta = [[], []]
+circulo = [[], []]
 
-
-def retaBresenhm(x1, y1, x2, y2):
+def retaBresenhm(x1, y1, x2, y2,cor):
     x = x1
     y = y1
     p = 0
@@ -46,8 +47,31 @@ def retaBresenhm(x1, y1, x2, y2):
         reta[1].append(y)
 
     print(reta)
-    plt.plot(reta[0], reta[1], 'ro', color='b')
+    plt.plot(reta[0], reta[1], 'ro', color=cor)
     plt.show()
 
+# retaBresenhm(-1, -9, -3, -6, 'r')
 
-retaBresenhm(-1, -9, -3, -6)
+def circleBresenhm(posicaoCentroX, posicaoCentroY, raio, quantidadeDePontos, cor):
+
+    distaciaEntrePontos = 2 * math.pi / quantidadeDePontos
+
+    for c in range(0, quantidadeDePontos):
+        cos = math.cos(c * distaciaEntrePontos)
+        sin = math.sin(c * distaciaEntrePontos)
+
+        x = int(cos * raio + posicaoCentroX)
+        y = int(sin * raio + posicaoCentroY)
+
+        circulo[0].append(x)
+        circulo[1].append(y)
+
+    print(circulo)
+    plt.plot(circulo[0], circulo[1], 'ro', color=cor)
+    plt.show()
+
+plt.rcParams['figure.figsize'] = (15,15)
+plt.ylim(50, 350, 0, 350)
+plt.grid()
+circleBresenhm(200, 200, 100, 100, 'g')
+
